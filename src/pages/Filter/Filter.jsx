@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "../../layout/Navbar";
 import Car from "./Car";
 import Datepicker from "react-tailwindcss-datepicker";
@@ -233,6 +233,10 @@ const Filter=()=>{
                     </div>
                     {/* End of filter */}
                 </div>
+
+                {/* <div className="hidden">
+                    <CarPopup idcar="5"/>
+                </div> */}
                 
             </div>
         </div>

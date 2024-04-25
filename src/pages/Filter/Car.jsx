@@ -1,5 +1,5 @@
 import React from "react"
-import car from "../../carsData/classes/SUV/ford/fordESCAPE.jpg"
+import car from "./renaultMEGANE.jpg"
 import { IoPerson } from "react-icons/io5";
 import { BsFillSuitcase2Fill } from "react-icons/bs";
 import { IoSettingsSharp } from "react-icons/io5";
@@ -13,7 +13,7 @@ import { GiCarDoor } from "react-icons/gi";
 const Car =()=>{return(
     <>
         <div className="w-full h-fit bg-white" >
-            <img src={car} alt="fordEscape" />
+            <img src={"http://localhost/locoauto/carsimages/suv/volkswagenTOUAREG.jpg"} alt="fordEscape" />
             {/* information */}
             <div className="p-2 " >
                 {/* title */}
