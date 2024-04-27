@@ -1,5 +1,5 @@
-import React from "react"
-import car from "./renaultMEGANE.jpg"
+import React, {useEffect, useState} from "react"
+// import car from "./renaultMEGANE.jpg"
 import { IoPerson } from "react-icons/io5";
 import { BsFillSuitcase2Fill } from "react-icons/bs";
 import { IoSettingsSharp } from "react-icons/io5";
@@ -8,11 +8,22 @@ import { SiVerizon } from "react-icons/si";
 import { GiGasPump } from "react-icons/gi";
 import { MdAirlineSeatReclineNormal } from "react-icons/md";
 import { GiCarDoor } from "react-icons/gi";
+import axios from "axios";
 
 
-const Car =()=>{return(
+const Car =(props)=>{
+    /* set the car id with the value obtained in props.idCar */
+    const [carId,setCarId]=useState();
+    useEffect(()=>{
+        setCarId(props.carId)
+        
+    })
+
+    return(
     <>
         <div className="w-full h-fit bg-white" >
+            <p>{carId}</p>
+            {/* {setCarId(props.carId)} */}
             <img src={"http://localhost/locoauto/carsimages/suv/volkswagenTOUAREG.jpg"} alt="fordEscape" />
             {/* information */}
             <div className="p-2 " >

@@ -49,7 +49,7 @@ SUV :
 
 Compacts :
     Audi:
-        Audi A3
+        Audi A3-----
         Audi RS3
     BMW:
         BMW 1 Series
@@ -85,7 +85,7 @@ Compacts :
         Ford Fiesta
     Renault:
         Renault Clio
-        Renault Megane---
+        Renault Megane
 
 Cabriolets :
     Audi:
@@ -99,7 +99,7 @@ Cabriolets :
         Mercedes-Benz CLE Cabriolet
     Volkswagen:
         Volkswagen Golf Cabriolet
-        Volkswagen T-Roc Cabriolet---
+        Volkswagen T-Roc Cabriolet
 
 Crossovers :
     Audi:
@@ -145,6 +145,7 @@ Berlines :
     Honda:
         Honda Civic
         Honda Legend
+Berlines :
     Toyota:
         Toyota Corolla
         Toyota Mirai

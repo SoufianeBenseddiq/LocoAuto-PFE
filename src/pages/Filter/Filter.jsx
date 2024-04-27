@@ -18,6 +18,8 @@ const Filter=()=>{
     //     setFilter(!filter)
     // }
 
+    //un tableau pre initialise de 106 nombre comme l ensemble d'ids par defaut de toutes les voitures
+    const [ids, setIds] = useState(Array.from({ length: 106 }, (_, index) => index + 1));
     const [data, setData] = useState({
         suv: false,
         cabriolets: false,
@@ -60,6 +62,7 @@ const Filter=()=>{
         axios.post("http://localhost/locoauto/filter.php", finalData)
             .then(response => {
                 alert(response.data);
+                setIds(response.data)
             })
             .catch(error => {
                 // Handle error
@@ -224,12 +227,20 @@ const Filter=()=>{
                     </div>
                     {/* Display filtered cars */}
                     <div className="grid md:grid-cols-2 grid-cols-1 gap-8 w-full ml-4 min-screen:mt-16 mt-32 border-t border-t-gray-400 pt-4 " >
+                        {/* <Car/>
                         <Car/>
                         <Car/>
                         <Car/>
                         <Car/>
-                        <Car/>
-                        <Car/>
+                        <Car/> */}
+                        {/* loop on ids and send it to data */}
+                        {
+                            ids.map(
+                                (carId) => (
+                                    <Car  carId={carId} />
+                                )
+                            )
+                        }
                     </div>
                     {/* End of filter */}
                 </div>
