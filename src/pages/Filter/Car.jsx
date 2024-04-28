@@ -14,10 +14,27 @@ import axios from "axios";
 const Car =(props)=>{
     /* set the car id with the value obtained in props.idCar */
     const [carId,setCarId]=useState();
-    useEffect(()=>{
-        setCarId(props.carId)
-        
-    })
+    const [carData, setCarData] = useState({
+        libelle: "",
+        categorie: "",
+        dateAchat: "",
+        description: "",
+        marque: "",
+        nbr_passagers: "",
+        nbr_valises: "",
+        prix: "",
+        transmission: "",
+        chemin: ""
+    });
+    useEffect(() => {
+        axios.post("http://localhost/locoauto/car.php", { carId: props.carId })
+            .then(response => {
+                setCarData(response.data);
+            })
+            .catch(error => {
+                console.error("Error fetching car data:", error);
+            });
+    }, [props.carId]);
 
     return(
     <>

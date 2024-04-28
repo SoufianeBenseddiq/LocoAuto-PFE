@@ -21,20 +21,12 @@ const Filter=()=>{
     //un tableau pre initialise de 106 nombre comme l ensemble d'ids par defaut de toutes les voitures
     const [ids, setIds] = useState(Array.from({ length: 106 }, (_, index) => index + 1));
     const [data, setData] = useState({
-        suv: false,
-        cabriolets: false,
-        breaks: false,
-        berlines: false,
-        compacts: false,
-        crossovers: false,
-        ponetotwo: false,
-        pthreetofive: false,
-        psixormore: false,
-        vonetotwo: false,
-        vthreetofour: false,
-        vfiveormore: false,
-        automatique: false,
-        manuelle: false,
+        categorie:null,
+        nbrPassagers:null,
+        nbrValises:null,
+        transmission:null,
+        prixmin:0,
+        prixmax:10000
     });
 
     const handleChange =(e)=>{
@@ -44,25 +36,17 @@ const Filter=()=>{
         e.preventDefault(); 
 
         let finalData = {
-            suv: data.suv ? "suv" : "",
-            cabriolets: data.cabriolets ? "cabriolets" : "",
-            breaks: data.breaks ? "breaks" : "",
-            berlines: data.berlines ? "berlines" : "",
-            compacts: data.compacts ? "compacts" : "",
-            crossovers: data.crossovers ? "crossovers" : "",
-            ponetotwo: data.ponetotwo ? "ponetotwo" : "",
-            pthreetofive: data.pthreetofive ? "pthreetofive" : "",
-            psixormore: data.psixormore ? "psixormore" : "",
-            vonetotwo: data.vonetotwo ? "vonetotwo" : "",
-            vthreetofour: data.vthreetofour ? "vthreetofour" : "",
-            vfiveormore: data.vfiveormore ? "vfiveormore" : "",
-            automatique: data.automatique ? "automatique" : "",
-            manuelle: data.manuelle ? "manuelle" : "",
+            categorie:data.categorie,
+            nbrPassagers:data.nbrPassagers,
+            nbrValises:data.nbrValises,
+            transmission:data.transmission,
+            prixmin:data.prixmin,
+            prixmax:data.prixmax
         };
         axios.post("http://localhost/locoauto/filter.php", finalData)
             .then(response => {
-                alert(response.data);
-                setIds(response.data)
+                // console.log(response.data.result);
+                setIds(response.data.result)
             })
             .catch(error => {
                 // Handle error
@@ -136,33 +120,32 @@ const Filter=()=>{
                                 {/* Categories */}
                                 <div className="border-b border-b-blue-800 pb-4 mt-4" >
                                     <p className="text-lg text-blue-800" >Categorie</p>
-                                    <div className="w-[50%] pt-2">
-                                        {/* SUV Category */}
-                                        <div className="flex flex-row justify-start" >
-                                            <input type="checkbox" id="SUV" onChange={handleChange} name="suv" className="mr-4" />
-                                            <label htmlFor="SUV"  className="w-full cursor-pointer">SUV</label>
-                                        </div>
-                                        <div className="flex flex-row justify-start" >
-                                            <input type="checkbox" id="Cabriolets" onChange={handleChange} name="cabriolets" className="mr-4" />
-                                            <label htmlFor="Cabriolets" className="w-full cursor-pointer" >Cabriolets</label>
-                                        </div>
-                                        <div className="flex flex-row justify-start" >
-                                            <input type="checkbox" id="Breaks" onChange={handleChange} name="breaks" className="mr-4" />
-                                            <label htmlFor="Breaks" className="w-full cursor-pointer">Breaks</label>
-                                        </div>
-                                        <div className="flex flex-row justify-start" >
-                                            <input type="checkbox" id="Berlines" onChange={handleChange} name="berlines" className="mr-4" />
-                                            <label htmlFor="Berlines" className="w-full cursor-pointer">Berlines</label>
-                                        </div>
-                                        <div className="flex flex-row justify-start" >
-                                            <input type="checkbox" id="Compacts" onChange={handleChange} name="compacts" className="mr-4" />
-                                            <label htmlFor="Compacts" className="w-full cursor-pointer">Compacts</label>
-                                        </div>
-                                        <div className="flex flex-row justify-start" >
-                                            <input type="checkbox" id="Crossovers" onChange={handleChange} name="crossovers" className="mr-4" />
-                                            <label htmlFor="Crossovers" className="w-full cursor-pointer">Crossovers</label>
-                                        </div>
-                                    </div>
+                                    <ul className="list-none w-[50%] pt-2">
+                                        <li className="flex items-center mb-2 cursor-pointer ">
+                                            <input  type="radio" id="suv" name="categorie" value={0} onChange={handleChange} className="mr-2 cursor-pointer" />
+                                            <label className=" cursor-pointer" htmlFor="suv">SUV</label>
+                                        </li>
+                                        <li className="flex items-center mb-2 cursor-pointer">
+                                            <input type="radio" id="cabriolets" name="categorie" value={1} onChange={handleChange} className="mr-2 cursor-pointer" />
+                                            <label className=" cursor-pointer" htmlFor="cabriolets">Cabriolets</label>
+                                        </li>
+                                        <li className="flex items-center mb-2 cursor-pointer">
+                                            <input type="radio" id="breaks" name="categorie" value={2} onChange={handleChange} className="mr-2 cursor-pointer" />
+                                            <label className=" cursor-pointer" htmlFor="breaks">Breaks</label>
+                                        </li>
+                                        <li className="flex items-center mb-2 cursor-pointer">
+                                            <input type="radio" id="berlines" name="categorie" value={3} onChange={handleChange} className="mr-2 cursor-pointer" />
+                                            <label className=" cursor-pointer" htmlFor="berlines">Berlines</label>
+                                        </li>
+                                        <li className="flex items-center mb-2 cursor-pointer">
+                                            <input type="radio" id="compacts" name="categorie" value={4} onChange={handleChange} className="mr-2 cursor-pointer" />
+                                            <label className=" cursor-pointer" htmlFor="compacts">Compacts</label>
+                                        </li>
+                                        <li className="flex items-center mb-2 cursor-pointer">
+                                            <input type="radio" id="crossovers" name="categorie" value={5} onChange={handleChange} className="mr-2 cursor-pointer" />
+                                            <label className=" cursor-pointer" htmlFor="crossovers">Crossovers</label>
+                                        </li>
+                                    </ul>
                                 </div>
 
                                 {/* Passagers */}
@@ -171,16 +154,12 @@ const Filter=()=>{
                                     <div className="w-[60%] pt-2">
                                         {/* 1 a 2 passagers*/}
                                         <div className="flex flex-row justify-start" >
-                                            <input type="checkbox" id="ponetotwo" onChange={handleChange} name="ponetotwo" className="mr-4" />
-                                            <label htmlFor="ponetotwo" className="w-full cursor-pointer">1 à 2 Passagers</label>
+                                            <input type="radio" id="ponetotwo" onChange={handleChange} value={" d.nbr_passagers <= 5"} name="nbrPassagers" className="mr-4" />
+                                            <label htmlFor="ponetotwo" className="w-full cursor-pointer">1 à 5 Passagers</label>
                                         </div>
                                         <div className="flex flex-row justify-start" >
-                                            <input type="checkbox" id="pthreetofive" onChange={handleChange} name="pthreetofive" className="mr-4" />
-                                            <label htmlFor="pthreetofive" className="w-full cursor-pointer">3 à 5 Passagers</label>
-                                        </div>
-                                        <div className="flex flex-row justify-start" >
-                                            <input type="checkbox" id="psixormore" onChange={handleChange} name="psixormore" className="mr-4" />
-                                            <label htmlFor="psixormore" className="w-full cursor-pointer">6 ou plus</label>
+                                            <input type="radio" id="pthreetofive" onChange={handleChange} value={" d.nbr_passagers >5"} name="nbrPassagers" className="mr-4" />
+                                            <label htmlFor="pthreetofive" className="w-full cursor-pointer">6 ou plus</label>
                                         </div>
                                     </div>
                                 </div>
@@ -191,16 +170,12 @@ const Filter=()=>{
                                     <div className="w-[60%] pt-2">
                                         {/* 1 a 2 Valises*/}
                                         <div className="flex flex-row justify-start" >
-                                            <input type="checkbox" id="vonetotwo" onChange={handleChange} name="vonetotwo" className="mr-4" />
-                                            <label htmlFor="vonetotwo" className="w-full cursor-pointer">1 à 2 Valises</label>
+                                            <input type="radio" id="vonetotwo" onChange={handleChange} value={3} name="nbrValises" className="mr-4" />
+                                            <label htmlFor="vonetotwo" className="w-full cursor-pointer">1 à 3 Valises</label>
                                         </div>
                                         <div className="flex flex-row justify-start" >
-                                            <input type="checkbox" id="vthreetofour" onChange={handleChange} name="vthreetofour" className="mr-4" />
-                                            <label htmlFor="vthreetofour" className="w-full cursor-pointer">3 à 4 Valises</label>
-                                        </div>
-                                        <div className="flex flex-row justify-start" >
-                                            <input type="checkbox" id="vfiveormore" onChange={handleChange} name="vfiveormore" className="mr-4" />
-                                            <label htmlFor="vfiveormore" className="w-full cursor-pointer">5 ou plus</label>
+                                            <input type="radio" id="vfiveormore" onChange={handleChange} value={4} name="nbrValises" className="mr-4" />
+                                            <label htmlFor="vfiveormore" className="w-full cursor-pointer">4 ou plus</label>
                                         </div>
                                     </div>
                                 </div>
@@ -211,12 +186,26 @@ const Filter=()=>{
                                     <div className="w-[60%] pt-2">
                                         {/* Automatique*/}
                                         <div className="flex flex-row justify-start" >
-                                            <input type="checkbox" id="automatique" onChange={handleChange} name="automatique" className="mr-4" />
+                                            <input type="radio" id="automatique" onChange={handleChange} value={"Automatique"}  name="transmission" className="mr-4" />
                                             <label htmlFor="automatique" className="w-full cursor-pointer">Automatique</label>
                                         </div>
                                         <div className="flex flex-row justify-start" >
-                                            <input type="checkbox" id="manuelle" onChange={handleChange} name="manuelle" className="mr-4" />
+                                            <input type="radio" id="manuelle" onChange={handleChange} value={"Manuelle"} name="transmission" className="mr-4" />
                                             <label htmlFor="manuelle" className="w-full cursor-pointer">Manuelle</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* prix */}
+                                <div className="border-b border-b-blue-800 pb-4 mt-4" >
+                                    <p className="text-lg text-blue-800" >Prix</p>
+                                    <div className="">
+                                        <div className="mt-2" >
+                                            <label htmlFor="prixmin" className="w-full cursor-pointer">Min : </label>
+                                            <input type="number" id="prixmin" onChange={handleChange} name="prixmin" placeholder="----MAD" className=" border ml-2 w-[30%] border-blue-200 " />
+                                        </div>
+                                        <div className="mt-2" >
+                                            <label htmlFor="prixmax" className="w-full cursor-pointer">Max : </label>
+                                            <input type="number" id="prixmax" onChange={handleChange} name="prixmax" placeholder="----MAD" className=" border ml-2 w-[30%] border-blue-200 " />
                                         </div>
                                     </div>
                                 </div>
