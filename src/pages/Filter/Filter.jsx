@@ -9,6 +9,7 @@ import { FaLocationDot } from "react-icons/fa6";
 // import AOS from "aos";
 import "aos/dist/aos.css";
 import axios from "axios";
+import CarDetails from "./CarDetail";
 
 
 const Filter=()=>{
@@ -25,8 +26,9 @@ const Filter=()=>{
         nbrPassagers:null,
         nbrValises:null,
         transmission:null,
+        marque:null,
         prixmin:0,
-        prixmax:10000
+        prixmax:5000
     });
 
     const handleChange =(e)=>{
@@ -46,6 +48,7 @@ const Filter=()=>{
         axios.post("http://localhost/locoauto/filter.php", finalData)
             .then(response => {
                 // console.log(response.data.result);
+                alert(response.data.result)
                 setIds(response.data.result)
             })
             .catch(error => {
@@ -66,6 +69,7 @@ const Filter=()=>{
     };
     return(
         <div className="" >
+            {/* <CarDetails/> */}
             <Navbar />
             <div className="bg-gray-200 mt-3 ">
                 {/* up filter */}
@@ -102,9 +106,9 @@ const Filter=()=>{
                                     ))}
                                 </select>   
                             </div>
-                                <button className="text-white min-screen:my-0 mb-5 bg-black rounded-lg ml-2 w-[180px] border h-[40px] font-semibold  hover:bg-transparent  ease-in-out duration-[450ms]">
-                                    Rechercher
-                                </button>
+                            <button className="text-white min-screen:my-0 mb-5 bg-black rounded-lg ml-2 w-[180px] border h-[40px] font-semibold  hover:bg-transparent  ease-in-out duration-[450ms]">
+                                Rechercher
+                            </button>
                         </form>
                     </div>
                     
@@ -120,7 +124,11 @@ const Filter=()=>{
                                 {/* Categories */}
                                 <div className="border-b border-b-blue-800 pb-4 mt-4" >
                                     <p className="text-lg text-blue-800" >Categorie</p>
-                                    <ul className="list-none w-[50%] pt-2">
+                                    <ul className="list-none w-[70%] pt-2">
+                                        <li className="flex items-center mb-2 cursor-pointer ">
+                                            <input  type="radio" id="toutes" name="categorie" value={-1} onChange={handleChange} className="mr-2 cursor-pointer" />
+                                            <label className=" cursor-pointer" htmlFor="toutes">Toutes les categories</label>
+                                        </li>
                                         <li className="flex items-center mb-2 cursor-pointer ">
                                             <input  type="radio" id="suv" name="categorie" value={0} onChange={handleChange} className="mr-2 cursor-pointer" />
                                             <label className=" cursor-pointer" htmlFor="suv">SUV</label>
@@ -148,17 +156,52 @@ const Filter=()=>{
                                     </ul>
                                 </div>
 
+                                {/* marques */}
+                                <div className="border-b border-b-blue-800 pb-4 mt-4" >
+                                    <p className="text-lg text-blue-800" >Marque</p>
+                                    <ul className="list-none w-[60%] pt-2">
+                                        <li className="flex items-center mb-2 cursor-pointer ">
+                                            <input  type="radio" id="toutesm" name="marque" value={-1} onChange={handleChange} className="mr-2 cursor-pointer" />
+                                            <label className=" cursor-pointer" htmlFor="toutesm">Toutes les marques</label>
+                                        </li>
+                                        <li className="flex items-center mb-2 cursor-pointer ">
+                                            <input  type="radio" id="suv" name="marque" value={0} onChange={handleChange} className="mr-2 cursor-pointer" />
+                                            <label className=" cursor-pointer" htmlFor="suv">SUV</label>
+                                        </li>
+                                        <li className="flex items-center mb-2 cursor-pointer">
+                                            <input type="radio" id="cabriolets" name="marque" value={1} onChange={handleChange} className="mr-2 cursor-pointer" />
+                                            <label className=" cursor-pointer" htmlFor="cabriolets">Cabriolets</label>
+                                        </li>
+                                        <li className="flex items-center mb-2 cursor-pointer">
+                                            <input type="radio" id="breaks" name="marque" value={2} onChange={handleChange} className="mr-2 cursor-pointer" />
+                                            <label className=" cursor-pointer" htmlFor="breaks">Breaks</label>
+                                        </li>
+                                        <li className="flex items-center mb-2 cursor-pointer">
+                                            <input type="radio" id="berlines" name="marque" value={3} onChange={handleChange} className="mr-2 cursor-pointer" />
+                                            <label className=" cursor-pointer" htmlFor="berlines">Berlines</label>
+                                        </li>
+                                        <li className="flex items-center mb-2 cursor-pointer">
+                                            <input type="radio" id="compacts" name="marque" value={4} onChange={handleChange} className="mr-2 cursor-pointer" />
+                                            <label className=" cursor-pointer" htmlFor="compacts">Compacts</label>
+                                        </li>
+                                        <li className="flex items-center mb-2 cursor-pointer">
+                                            <input type="radio" id="crossovers" name="marque" value={5} onChange={handleChange} className="mr-2 cursor-pointer" />
+                                            <label className=" cursor-pointer" htmlFor="crossovers">Crossovers</label>
+                                        </li>
+                                    </ul>
+                                </div>
+
                                 {/* Passagers */}
                                 <div className="border-b border-b-blue-800 pb-4 mt-4" >
                                     <p className="text-lg text-blue-800" >Passagers</p>
                                     <div className="w-[60%] pt-2">
                                         {/* 1 a 2 passagers*/}
                                         <div className="flex flex-row justify-start" >
-                                            <input type="radio" id="ponetotwo" onChange={handleChange} value={" d.nbr_passagers <= 5"} name="nbrPassagers" className="mr-4" />
+                                            <input type="radio" id="ponetotwo" onChange={handleChange} value={5} name="nbrPassagers" className="mr-4" />
                                             <label htmlFor="ponetotwo" className="w-full cursor-pointer">1 à 5 Passagers</label>
                                         </div>
                                         <div className="flex flex-row justify-start" >
-                                            <input type="radio" id="pthreetofive" onChange={handleChange} value={" d.nbr_passagers >5"} name="nbrPassagers" className="mr-4" />
+                                            <input type="radio" id="pthreetofive" onChange={handleChange} value={6} name="nbrPassagers" className="mr-4" />
                                             <label htmlFor="pthreetofive" className="w-full cursor-pointer">6 ou plus</label>
                                         </div>
                                     </div>

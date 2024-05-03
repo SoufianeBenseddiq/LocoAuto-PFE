@@ -13,7 +13,7 @@ import axios from "axios";
 
 const Car =(props)=>{
     /* set the car id with the value obtained in props.idCar */
-    const [carId,setCarId]=useState();
+    const carId=props.carId
     const [carData, setCarData] = useState({
         libelle: "",
         categorie: "",
@@ -27,7 +27,7 @@ const Car =(props)=>{
         chemin: ""
     });
     useEffect(() => {
-        axios.post("http://localhost/locoauto/car.php", { carId: props.carId })
+        axios.post("http://localhost/locoauto/car.php", carId)
             .then(response => {
                 setCarData(response.data);
             })
@@ -39,36 +39,36 @@ const Car =(props)=>{
     return(
     <>
         <div className="w-full h-fit bg-white" >
-            <p>{carId}</p>
+            {/* <p>{carId}</p> */}
             {/* {setCarId(props.carId)} */}
-            <img src={"http://localhost/locoauto/carsimages/suv/volkswagenTOUAREG.jpg"} alt="fordEscape" />
+            <img src={`http://localhost/locoauto/carsimages/${carData.chemin}`} className="cursor-pointer" alt={carData.libelle} />
             {/* information */}
             <div className="p-2 " >
                 {/* title */}
                 <div className="flex items-center  " >
-                    <h1 className="font-semibold text-xl  " >Escape Ford</h1>
-                    <p className="text-xs bg-blue-300 text-blue-900 ml-4 px-2 rounded-2xl " >SUV</p>
+                    <h1 className="font-semibold text-xl cursor-pointer " >{carData.libelle}</h1>
+                    <p className="text-xs bg-blue-300 text-blue-900 ml-4 px-2 rounded-2xl " >{carData.categorie}</p>
                 </div>
                 {/* features */}
                 <div className="flex flex-col min-screen:flex-row justify-between text-gray-500 w-[100%] " >
                     <div className="flex justify-between min-screen:w-[50%] w-[100%] " >
                         <div className="flex justify-between items-center " >
                             <IoPerson />
-                            <span>5</span>
+                            <span>{carData.nbr_passagers}</span>
                         </div>
                         <div className="flex justify-between items-center " >
                             <BsFillSuitcase2Fill/>
-                            <span>1</span>
+                            <span>{carData.nbr_valises}</span>
                         </div>
                         <div className="flex justify-between items-center " >
                             <GiGasPump/>
-                            <span>Gasoil</span>
+                            <span>Essence</span>
                         </div>
                     </div>
                     <div className="flex justify-between min-screen:w-[40%] w-[80%] mx-auto " >
                         <div className="flex justify-between items-center " >
                             <IoSettingsSharp/>
-                            <span>Auto</span>
+                            <span>{carData.transmission}</span>
                         </div>
                         <div className="flex justify-between items-center " >
                             <SiPicardsurgeles/>
@@ -85,7 +85,7 @@ const Car =(props)=>{
                         </div>
                         <div className="flex items-center mt-1 text-[14px] " >
                             <MdAirlineSeatReclineNormal size={20} color="green" className="w-6" />
-                            <p className=" " >Passagers : 4</p>
+                            <p className=" " >{carData.nbr_passagers}</p>
                         </div>
                         <div className="flex items-center mt-1 text-[14px] " >
                             <GiCarDoor size={18} color="green" className="w-6" />
@@ -102,9 +102,9 @@ const Car =(props)=>{
                 <div className="w-full mt-3 flex justify-between " >
                     {/* price */}
                     <div className="w-fit flex items-center" >
-                        <h2 className="font-bold text-[22px] text-green-700 " >450 DH</h2>
-                        <h3 className="ml-1 text-xs font-medium line-through text-red-700 " >530 DH</h3>
-                        <h3 className="text-green-600 font-medium ml-2" >-16%</h3>
+                        <h2 className="font-bold text-[22px] text-green-700 " >{carData.prix} DH</h2>
+                        <h3 className="ml-1 text-xs font-medium line-through text-red-700 " >{(parseInt(carData.prix) + 100) } DH</h3>
+                        <h3 className="text-green-600 font-medium ml-2" >-10%</h3>
                     </div>
                     {/* Reservation */}
                     <button className="text-white min-screen:my-0 mb-5 bg-blue-700 rounded-lg w-[30%]   border h-[40px] font-semibold  hover:bg-transparent  ease-in-out duration-[450ms]">

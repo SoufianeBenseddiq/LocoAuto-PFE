@@ -1,0 +1,7 @@
+{
+    "categories":["Categories","SUV","Cabriolets","Breaks","Berlines","Compacts","Crossovers"],
+    "marques":["Marques","Audi","BMW","Mercedes","Subaru","Volvo","Mazda","Honda","Toyota","Volkswagen","Nissan","Ford","Renault"],
+    "nbrPassagers":["1 à 5","6 ou plus"],
+    "nbrValises":["1 à 3","4 ou Plus"],
+    "prix":["Ascendent","Descendent"]
+}
