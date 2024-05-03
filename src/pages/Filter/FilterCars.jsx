@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Navbar from "../../layout/Navbar";
 import Car from "./Car";
 import { ReactTyped } from "react-typed";
-import { FaLocationDot } from "react-icons/fa6";
 import "aos/dist/aos.css";
 import axios from "axios";
 import CarDetails from "./CarDetail";
 
 const FilterCars = () => {
-const [currentId,setCurrentId]=useState(-1)
+const [currentPopUp,setCurrentPopUp]=useState("")
 const [msg,setMsg]=useState("")
 const [ids, setIds] = useState(Array.from({ length: 106 }, (_, index) => index + 1));
+const [showComments, setShowComments] = useState(false);
 const [data, setData] = useState({
     categorie: null,
     nbrPassagers: null,
@@ -20,9 +20,6 @@ const [data, setData] = useState({
     prix: null
 });
 
-const changeCurrentId =(id)=>{
-    setCurrentId(id)
-}
 const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
 };
@@ -61,8 +58,8 @@ const handleFilter = (e) => {
 
 return (
     <div>
+        <CarDetails currentId={currentPopUp} changeCurrentId={setCurrentPopUp} />
         <Navbar />
-        <CarDetails  />
         <div className="bg-gray-200 mt-3 ">
             {/* up side */}
             <div className="w-full h-40 bg-black shadow-2xl z-40 ">
@@ -128,8 +125,9 @@ return (
                 <div className="grid l-screen:grid-cols-3 border-t border-t-gray-400 pt-10 sm:grid-cols-2 grid-cols-1 gap-4" >
                     {/* loop on ids and send it to data */}
                     {
-                        ids.map((carId) => (<Car key={carId} carId={carId}  />))
+                        ids.map((carId) => (<Car key={carId} carId={carId} changeCurrent={setCurrentPopUp} />))
                     }
+
                 </div>
             </div>
             

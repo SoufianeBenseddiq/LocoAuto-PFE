@@ -9,11 +9,11 @@ import { GiGasPump } from "react-icons/gi";
 import { MdAirlineSeatReclineNormal } from "react-icons/md";
 import { GiCarDoor } from "react-icons/gi";
 import axios from "axios";
+import CarDetails from "./CarDetail";
 
 
-const Car =(props)=>{
+const Car =({carId,changeCurrent})=>{
     /* set the car id with the value obtained in props.idCar */
-    const carId=props.carId
     const [carData, setCarData] = useState({
         libelle: "",
         categorie: "",
@@ -34,10 +34,13 @@ const Car =(props)=>{
             .catch(error => {
                 console.error("Error fetching car data:", error);
             });
-    }, [props.carId]);
+    }, [carId]);
 
     return(
-    <>
+    <div onClick={()=>changeCurrent(carId)} >
+        {/* displayed car */}
+            {/* <CarDetails  /> */}
+        {/* end of displayed car */}
         <div className="w-full h-fit bg-white" >
             {/* <p>{carId}</p> */}
             {/* {setCarId(props.carId)} */}
@@ -114,6 +117,6 @@ const Car =(props)=>{
             </div>
 
         </div>
-    </>
+    </div>
 )}
 export default Car

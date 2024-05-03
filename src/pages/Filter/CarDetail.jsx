@@ -7,21 +7,26 @@ import { GiGasPump } from "react-icons/gi";
 import { IoCloseOutline } from "react-icons/io5";
 import { CiHeart } from "react-icons/ci";
 import { PiArrowRightThin } from "react-icons/pi";
+import { FaCircleArrowLeft } from "react-icons/fa6";
+import { FaCircleArrowRight } from "react-icons/fa6";
 
-const CarDetails = () => {
+
+const CarDetails = ({currentId,changeCurrentId}) => {
     const [showComments, setShowComments] = useState(false);
 
     // useEffect to show comments after component mounts
     
 
     return (
-        <div className="bg-transparent min-screen:ml-2 w-full h-screen min-screen:mt-14 shadow-2xl overflow-y-auto fixed z-50">
+        <div className={currentId.length===0?"hidden":"bg-transparent min-screen:ml-2 w-full h-screen min-screen:mt-14 mt-0 shadow-2xl overflow-y-auto fixed z-50"}>
             {/* up div */}
             <div className="min-screen:w-[86%] w-full mx-auto h-fit bg-gray-200 flex min-screen:flex-row flex-col justify-between bg-gradient-to-b from-gray-200 via-gray-100 to-gray-50">
                 {/* images div */}
                 <div className="min-screen:w-[50%] w-full h-full flex flex-col justify-center">
                     <img src={"http://localhost/locoauto/carsimages/compacts/renaultMEGANE.jpg"} alt="" />
-                    <IoCloseOutline size={30} className="cursor-pointer z-20 min-screen:hidden absolute xmin-screen:top-1 top-0 xmin-screen:right-3 right-0" color="black" />
+                    <FaCircleArrowLeft color="white" size={25} className="z-20 absolute opacity-40 hover:opacity-100 cursor-pointer " />
+                    <FaCircleArrowRight size={25} color="white" className="absolute opacity-40 hover:opacity-100 cursor-pointer min-screen:right-[50%] right-0 " />
+                    <IoCloseOutline size={30} onClick={()=>changeCurrentId("")} className="cursor-pointer z-20 min-screen:hidden absolute xmin-screen:top-1 top-0 xmin-screen:right-3 right-0" color="black" />
                 </div>
                 {/* data div */}
                 <div className="min-screen:w-[50%] h-full py-8 min-screen:px-8 px-4 flex flex-row justify-between">
@@ -69,7 +74,7 @@ const CarDetails = () => {
                         <p className="cursor-pointer" onClick={()=>{setShowComments(!showComments)}} > {!showComments?"Afficher les commentaires":"Cacher les commentaires"} </p>
                     </div>
                     <div className="w-[10%] flex flex-col justify-start items-end">
-                        <IoCloseOutline size={30} className="cursor-pointer min-screen:block hidden" />
+                        <IoCloseOutline size={30} onClick={()=>changeCurrentId("")} className="cursor-pointer min-screen:block hidden" />
                         <CiHeart size={30} className="cursor-pointer mt-3 hover:text-red-500 ease-in-out duration-200" />
                     </div>
                 </div>
@@ -79,26 +84,6 @@ const CarDetails = () => {
                 <div className="min-screen:w-[86%]  mx-auto bg-white px-4 pt-6 ease-in-out duration-500 ">
                     <h1 className="border-t border-gray-300 text-4xl">Commentaires:</h1>
                     {/* Comment sections */}
-                    <div className="mt-4" >
-                        <h2 className="text-blue-500 font-bol text-2xl ml-10" >Oussama Oulaydi</h2>
-                        <p className="ml-14 font-light " >It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                    </div>
-                    <div className="mt-4" >
-                        <h2 className="text-blue-500 font-bol text-2xl ml-10" >Oussama Oulaydi</h2>
-                        <p className="ml-14 font-light " >It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                    </div>
-                    <div className="mt-4" >
-                        <h2 className="text-blue-500 font-bol text-2xl ml-10" >Oussama Oulaydi</h2>
-                        <p className="ml-14 font-light " >It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                    </div>
-                    <div className="mt-4" >
-                        <h2 className="text-blue-500 font-bol text-2xl ml-10" >Oussama Oulaydi</h2>
-                        <p className="ml-14 font-light " >It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                    </div>
-                    <div className="mt-4" >
-                        <h2 className="text-blue-500 font-bol text-2xl ml-10" >Oussama Oulaydi</h2>
-                        <p className="ml-14 font-light " >It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
-                    </div>
                     <div className="mt-4" >
                         <h2 className="text-blue-500 font-bol text-2xl ml-10" >Oussama Oulaydi</h2>
                         <p className="ml-14 font-light " >It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
