@@ -37,10 +37,7 @@ const Car =({carId,changeCurrent})=>{
     }, [carId]);
 
     return(
-    <div onClick={()=>changeCurrent(carId)} >
-        {/* displayed car */}
-            {/* <CarDetails  /> */}
-        {/* end of displayed car */}
+    <div  onClick={()=>changeCurrent(carId)} >
         <div className="w-full h-fit bg-white" >
             {/* <p>{carId}</p> */}
             {/* {setCarId(props.carId)} */}
@@ -97,7 +94,7 @@ const Car =({carId,changeCurrent})=>{
                         {/* rate */}
                         <div className="flex mt-3 mx-auto" >
                             <h2 className="text-white bg-green-600 px-1" >Excelent</h2>
-                            <p className="text-xs text-gray-600" >(25 commentaires)</p>
+                            <p className="text-xs text-gray-600" >(Avis quotidien)</p>
                         </div>
                     </div>
                 </div>
@@ -110,8 +107,8 @@ const Car =({carId,changeCurrent})=>{
                         <h3 className="text-green-600 font-medium ml-2" >-10%</h3>
                     </div>
                     {/* Reservation */}
-                    <button className="text-white min-screen:my-0 mb-5 bg-blue-700 rounded-lg w-[30%]   border h-[40px] font-semibold  hover:bg-transparent  ease-in-out duration-[450ms]">
-                        Reserver
+                    <button className="text-white min-screen:my-0 mb-5 bg-blue-700 rounded-lg w-[30%]   border h-[40px] font-semibold  hover:bg-blue-400  ease-in-out duration-[450ms]">
+                        Détails
                     </button>
                 </div>
             </div>

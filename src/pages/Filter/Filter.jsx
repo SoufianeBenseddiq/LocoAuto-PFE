@@ -224,7 +224,7 @@ const Filter=()=>{
                                 </div>
 
                                 {/* Transmission */}
-                                <div className="border-b border-b-blue-800 pb-4 mt-4" >
+                                <div className="border-b border-b-blue-800 mt-4" >
                                     <p className="text-lg text-blue-800" >Transmssion</p>
                                     <div className="w-[60%] pt-2">
                                         {/* Automatique*/}
@@ -259,12 +259,6 @@ const Filter=()=>{
                     </div>
                     {/* Display filtered cars */}
                     <div className="grid md:grid-cols-2 grid-cols-1 gap-8 w-full ml-4 min-screen:mt-16 mt-32 border-t border-t-gray-400 pt-4 " >
-                        {/* <Car/>
-                        <Car/>
-                        <Car/>
-                        <Car/>
-                        <Car/>
-                        <Car/> */}
                         {/* loop on ids and send it to data */}
                         {
                             ids.map(
@@ -276,11 +270,6 @@ const Filter=()=>{
                     </div>
                     {/* End of filter */}
                 </div>
-
-                {/* <div className="hidden">
-                    <CarPopup idcar="5"/>
-                </div> */}
-                
             </div>
         </div>
         

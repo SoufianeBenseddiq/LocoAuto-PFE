@@ -102,18 +102,18 @@ return (
                             <option value={6}>6 ou plus de Passagers</option>
                         </select>
                     </div>
-                    <div className="flex min-screen:flex-row flex-col justify-between mt-5" >
-                        <select name="nbrValises" onChange={handleChange} className="block min-screen:w-[25%] min-screen:mt-0 mt-5 bg-white border border-gray-400 text-blue-700 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight ease-in-out duration-300 focus:outline-none focus:shadow-outline" id="">
+                    <div className="flex min-screen:flex-row flex-col justify-between items-center " >
+                        <select name="nbrValises" onChange={handleChange} className="block min-screen:w-[25%] w-[100%] h-fit min-screen:mt-3 mt-5 bg-white border border-gray-400 text-blue-700 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight ease-in-out duration-300 focus:outline-none focus:shadow-outline" id="">
                             <option value={-1}  >Nombre de Valises</option>
                             <option value={5}>1 à 5 Valises</option>
                             <option value={6}>6 ou plus de Valises</option>
                         </select>
-                        <select name="prix" onChange={handleChange} className="block min-screen:w-[25%] bg-white border border-gray-400 text-blue-700 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight ease-in-out duration-300 focus:outline-none focus:shadow-outline" >
+                        <select name="prix" onChange={handleChange} className="block mt-5 min-screen:w-[25%] w-[100%] bg-white border border-gray-400 text-blue-700 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight ease-in-out duration-300 focus:outline-none focus:shadow-outline" >
                             <option value={-1}  >Prix</option>
                             <option value="asc">Prix Ascendent</option>
                             <option value="desc">Prix Descendent</option>
                         </select>
-                        <input type="submit" value="Valider" name="" id=""  className="hover:cursor-pointer min-screen:w-[25%] w-[50%] min-screen:mx-0 mx-auto bg-black border-white border text-white py-2 px-4 mt-4 rounded-md hover:bg-[#ff0366] transition duration-300" />
+                        <input type="submit" value="Valider" name="" id=""  className="hover:cursor-pointer min-screen:w-[25%]  w-[50%] min-screen:mx-0 mx-auto bg-black border-white border text-white py-2 px-4 mt-4 rounded-md hover:bg-[#ff0366] transition duration-300" />
                     </div>
                 </form>
             </div>
