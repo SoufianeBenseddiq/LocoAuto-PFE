@@ -10,7 +10,7 @@ const FilterCars = () => {
 const [currentPopUp,setCurrentPopUp]=useState("")
 const [msg,setMsg]=useState("")
 const [ids, setIds] = useState(Array.from({ length: 106 }, (_, index) => index + 1));
-const [showComments, setShowComments] = useState(false);
+// const [showComments, setShowComments] = useState(false);
 const [data, setData] = useState({
     categorie: null,
     nbrPassagers: null,
@@ -19,6 +19,15 @@ const [data, setData] = useState({
     marque: null,
     prix: null
 });
+
+// stop scrolling when a popup is on
+useEffect(()=>{
+    if(currentPopUp.length===0){
+        document.body.style.overflowY="scroll"
+    }else{
+        document.body.style.overflowY="hidden"
+    }
+},[currentPopUp])
 
 const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });

@@ -64,6 +64,8 @@ const CarDetails = ({currentId,changeCurrentId}) => {
             });
     }
     return (
+        <> 
+        <div className={currentId.length===0?" hidden":"absolute w-[100%] h-[1000%] opacity-50 mt-[-20px] bg-black "} ></div>
         <div className={currentId.length===0?"hidden":"bg-transparent min-screen:ml-2 w-full h-screen min-screen:mt-14 mt-0 shadow-2xl overflow-y-auto fixed z-50"}>
             {/* up div */}
             <div className="min-screen:w-[86%] w-full mx-auto h-fit bg-gray-200 flex min-screen:flex-row flex-col justify-between bg-gradient-to-b from-gray-200 via-gray-100 to-gray-50">
@@ -134,6 +136,7 @@ const CarDetails = ({currentId,changeCurrentId}) => {
             )}
 
         </div>
+        </>
     );
 }
 

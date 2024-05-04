@@ -9,7 +9,6 @@ import { GiGasPump } from "react-icons/gi";
 import { MdAirlineSeatReclineNormal } from "react-icons/md";
 import { GiCarDoor } from "react-icons/gi";
 import axios from "axios";
-import CarDetails from "./CarDetail";
 
 
 const Car =({carId,changeCurrent})=>{
