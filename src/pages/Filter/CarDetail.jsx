@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoPerson } from "react-icons/io5";
 import { BsFillSuitcase2Fill } from "react-icons/bs";
 import { IoSettingsSharp } from "react-icons/io5";
@@ -11,6 +11,7 @@ import { FaCircleArrowLeft } from "react-icons/fa6";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import axios from "axios";
 import Comment from "./Comment";
+import Reservation from "./Reservation";
 import "aos/dist/aos.css";
 
 
@@ -18,8 +19,9 @@ const CarDetails = ({currentId,changeCurrentId}) => {
     const [showComments, setShowComments] = useState(false);
     const [img,setImg]=useState([])
     const [indexImg,setIndexImg]=useState(0)
+    const [reserver,setReserver] = useState(false)
+    const [id,setId] = useState(null)
 
-    // useEffect to show comments after component mounts
     const [carData, setCarData] = useState({
         libelle: "",
         categorie: "",
@@ -54,6 +56,7 @@ const CarDetails = ({currentId,changeCurrentId}) => {
             .then(response => {
                 setCarData(response.data);
                 // console.log(carData)
+                setId(currentId)
                 changeCurrentId("none")
                 setIndexImg(0)
                 setShowComments(false)
@@ -65,8 +68,9 @@ const CarDetails = ({currentId,changeCurrentId}) => {
     }
     return (
         <> 
-        <div className={currentId.length===0?" hidden":"absolute w-[100%] h-[1000%] opacity-50 mt-[-20px] bg-black "} ></div>
-        <div className={currentId.length===0?"hidden":"bg-transparent min-screen:ml-2 w-full h-screen min-screen:mt-14 mt-0 shadow-2xl overflow-y-auto fixed z-50"}>
+        <div className={currentId.length===0?" hidden":"fixed w-[100%] h-[1000%] opacity-60 mt-[-20px] bg-black "} ></div>
+        <Reservation currentId={id} reserver={reserver} setReserver={setReserver} img={carData.chemin1} libelle={carData.libelle} prix={carData.prix} />
+        <div className={currentId.length===0?"hidden":"bg-transparent min-screen:ml-2 w-full h-screen min-screen:mt-14 mt-0 shadow-2xl overflow-y-auto fixed z-40"}>
             {/* up div */}
             <div className="min-screen:w-[86%] w-full mx-auto h-fit bg-gray-200 flex min-screen:flex-row flex-col justify-between bg-gradient-to-b from-gray-200 via-gray-100 to-gray-50">
                 {/* images div */}
@@ -114,7 +118,7 @@ const CarDetails = ({currentId,changeCurrentId}) => {
                             <h3 className="text-green-600 font-medium ml-2">-10%</h3>
                         </div>
                         <p className="text-sm mb-5">{carData.description}</p>
-                        <button className="text-white min-screen:my-0 mb-5  bg-black  w-[70%] flex flex-row items-center pl-[24%] hover:pl-[27%]  border h-[40px] font-semibold  hover:bg-blue-500 ease-in-out duration-[450ms]">
+                        <button onClick={()=>{setReserver(true)}} className="text-white min-screen:my-0 mb-5  bg-black  w-[70%] flex flex-row items-center pl-[24%] hover:pl-[27%]  border h-[40px] font-semibold  hover:bg-blue-500 ease-in-out duration-[450ms]">
                             <span className="font-thin">Reserver</span><PiArrowRightThin color="white" className="mt-1 ml-3" />
                         </button>
                         <p className="cursor-pointer" onClick={()=>{setShowComments(!showComments)}} > {!showComments?"Afficher les commentaires":"Cacher les commentaires"} </p>

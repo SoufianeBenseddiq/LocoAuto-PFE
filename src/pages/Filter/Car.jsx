@@ -105,7 +105,7 @@ const Car =({carId,changeCurrent})=>{
                         <h3 className="ml-1 text-xs font-medium line-through text-red-700 " >{(parseInt(carData.prix) + 100) } DH</h3>
                         <h3 className="text-green-600 font-medium ml-2" >-10%</h3>
                     </div>
-                    {/* Reservation */}
+                    {/* Details */}
                     <button className="text-white min-screen:my-0 mb-5 bg-blue-700 rounded-lg w-[30%]   border h-[40px] font-semibold  hover:bg-blue-400  ease-in-out duration-[450ms]">
                         Détails
                     </button>
