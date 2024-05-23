@@ -6,8 +6,8 @@ import axios from "axios";
 
 const Reservation = ({ currentId, reserver, setReserver, img, libelle, prix }) => {
     const [value, setValue] = useState({
-        startDate: new Date(),
-        endDate: new Date().setMonth(new Date().getMonth() + 1) // end date is one month from now
+        startDate: null,
+        endDate: null // end date is one month from now
     });
 
     const handleValueChange = (newValue) => {
@@ -18,22 +18,28 @@ const Reservation = ({ currentId, reserver, setReserver, img, libelle, prix }) =
         setNbJours(daysDifference + 1);
     };
 
-    // Format date to dd-mm-yyyy
-    function formatDate(date) {
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        return `${day}-${month}-${year}`;
-    }
-
+    const [reservedDates, setReservedDates] = useState([]);
     const [reservationData, setReservationData] = useState({
         carId: currentId,
         lieuRamassage: "",
         lieuDepot: "",
-        dateDebut: formatDate(new Date()),
+        dateDebut: new Date(),
         dateFinReservation: null,
         cnie: ""
     });
+
+    useEffect(() => {
+        setToken(getCookie("token"));
+        // Fetch reserved dates
+        axios.get(`http://localhost/locoauto/reservedDates.php?carId=${currentId}`)
+            .then(response => {
+                setReservedDates(response.data.map(dateRange => ({
+                    startDate: new Date(dateRange.start),
+                    endDate: new Date(dateRange.end)
+                })));
+            })
+            .catch(error => console.error(error));
+    }, [currentId]);
 
     const handleChange = (e) => {
         setReservationData({ ...reservationData, [e.target.name]: e.target.value });
@@ -49,10 +55,6 @@ const Reservation = ({ currentId, reserver, setReserver, img, libelle, prix }) =
     const [nbJours, setNbJours] = useState(0);
     const [token, setToken] = useState(null);
 
-    useEffect(() => {
-        setToken(getCookie("token"));
-    }, []);
-
     const navigate = useNavigate();
 
     const handleReservation = (e) => {
@@ -64,20 +66,40 @@ const Reservation = ({ currentId, reserver, setReserver, img, libelle, prix }) =
             carId: currentId,
             lieuRamassage: reservationData.lieuRamassage,
             lieuDepot: reservationData.lieuDepot,
-            dateDebut: formatDate(dateDebut),
-            dateFin: formatDate(dateFin),
-            cnie: reservationData.cnie
+            dateDebut: dateDebut,
+            dateFin: dateFin,
+            cnie: reservationData.cnie,
+            montantTotal: (nbJours * prix),
+            token: token
         };
 
-        // alert(`Nombre de jours: ${nbJours}`);
         if (token === null) {
             if (window.confirm('Vous devez vous connecter avant de réserver')) {
                 navigate("/login");
             }
         } else {
-            axios.post("http://localhost/locoauto/reservation.php", finalReservationData)
-                .then((response) => { alert(response.data); })
-                .catch(error => console.error(error));
+            
+            if (!finalReservationData.lieuRamassage || 
+                !finalReservationData.lieuDepot ||
+                !finalReservationData.dateDebut ||
+                !finalReservationData.dateFin ||
+                !finalReservationData.cnie) {
+                    alert("Vous Devez remplire tous les champs necessaires !");
+            }else{
+                if(window.confirm("Valider la reservation ?")){
+                    axios.post("http://localhost/locoauto/reservation.php", finalReservationData)
+                        .then(
+                            (response) => { 
+                                alert(response.data); 
+                                window.location.reload();
+                            }
+                        )
+                        .catch(error => console.error(error));
+                }else{
+                    alert("Reservation Annulee !")
+                }
+                }
+            
         }
     };
 
@@ -98,7 +120,6 @@ const Reservation = ({ currentId, reserver, setReserver, img, libelle, prix }) =
                 </div>
                 <form onSubmit={handleReservation} className="min-screen:w-[80%] min-screen:h-[100px] h-fit flex min-screen:flex-row flex-col justify-between bg-black bg-opacity-80 pb-8 pt-2 gap-2 px-4 rounded-2xl">
                     <div className="h-fit min-screen:text-left text-center w-fit">
-                        {/* localisation */}
                         <p className="text-white mb-1 text-lg font-semibold">Localisation (depart et arrivee)</p>
                         <div className="flex gap-2">
                             <div className="cursor-pointer bg-gray-800 flex justify-between items-center rounded-lg px-2 h-10">
@@ -111,16 +132,16 @@ const Reservation = ({ currentId, reserver, setReserver, img, libelle, prix }) =
                             </div>
                         </div>
                     </div>
-                    {/* periode */}
                     <div className="min-screen:w-[30%] min-screen:text-left text-center">
                         <p className="text-white mb-1 text-lg font-semibold">Période</p>
                         <Datepicker
                             value={value}
                             onChange={handleValueChange}
                             placeholder="Période"
+                            displayFormat={"YYYY-MM-DD"}
+                            disabledDates={reservedDates}
                         />
                     </div>
-                    {/* CNIE */}
                     <div className="h-fit min-screen:text-left text-center">
                         <p className="text-white mb-1 text-lg font-semibold">CNIE</p>
                         <div className="bg-gray-800 text-white rounded-lg h-10 min-screen:w-fit w-full pl-2 flex flex-row justify-start items-center">
@@ -128,14 +149,12 @@ const Reservation = ({ currentId, reserver, setReserver, img, libelle, prix }) =
                             <input type="text" name="cnie" onChange={handleChange} className="bg-gray-800 focus:outline-none rounded-lg text-white h-10 min-screen:w-[80px] w-full" placeholder="EE11111" />
                         </div>
                     </div>
-                    {/* prix Total */}
                     <div className="h-fit">
                         <p className="text-white mb-1 text-lg font-semibold min-screen:text-left text-center">Total</p>
                         <div className="bg-gray-800 text-white rounded-lg h-10 min-screen:w-fit w-full  items-center">
-                            <p  className="bg-gray-800 text-center pt-2 rounded-lg text-white h-10 min-screen:w-[100px] w-full">{`${nbJours * prix} MAD `}</p>
+                            <p className="bg-gray-800 text-center pt-2 rounded-lg text-white h-10 min-screen:w-[100px] w-full">{`${nbJours * prix} MAD `}</p>
                         </div>
                     </div>
-                    {/* button */}
                     <div className="min-screen:mx-0 text-right mx-auto w-fit h-fit">
                         <p className="text-white mb-1 text-lg font-semibold w-fit h-7 min-screen:block hidden"></p>
                         <input type="submit" className="text-white h-10 bg-blue-600 text-center rounded-lg px-4 hover:bg-blue-500 cursor-pointer ease-in-out duration-300 border-white border" value="Reserver" />

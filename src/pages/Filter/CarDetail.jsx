@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IoPerson } from "react-icons/io5";
 import { BsFillSuitcase2Fill } from "react-icons/bs";
 import { IoSettingsSharp } from "react-icons/io5";
