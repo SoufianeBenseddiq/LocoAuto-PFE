@@ -78,10 +78,10 @@ const Car =({carId,changeCurrent})=>{
                 {/* actulalites */}
                 <div className="mt-4 flex items-center " >
                     <div className="w-full" >
-                        <div className="flex items-center text-[14px] " >
+                        {/* <div className="flex items-center text-[14px] " >
                             <SiVerizon color="green" className="w-6" />
                             <p className=" " >Disponibilité :le JJ-MM-AAAA</p>
-                        </div>
+                        </div> */}
                         <div className="flex items-center mt-1 text-[14px] " >
                             <MdAirlineSeatReclineNormal size={20} color="green" className="w-6" />
                             <p className=" " >{carData.nbr_passagers}</p>

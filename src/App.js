@@ -5,7 +5,8 @@ import Signup from './pages/Signup/Signup';
 import Login from './pages/Login/Login';
 import Contact from './pages/Contact/Contact';
 import FilterCars from './pages/Filter/FilterCars.jsx';
-import Reservation from './pages/Filter/Reservation.jsx';
+// import Reservation from './pages/Filter/Reservation.jsx';
+import UserReservations from './pages/User/UserReservations.jsx';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
           <Route path='/login' element={<Login/>} />
           <Route path="/contact" element={<Contact/>}  />
           <Route path="/filter" element={<FilterCars/>}  />
-          <Route path="/reservation" element={<Reservation/>}  />
+          {/* <Route path="/reservation" element={<Reservation/>}  /> */}
+          <Route path="/reservations" element={<UserReservations/>}  />
         </Routes>
       </Router>
     </div>
