@@ -43,8 +43,10 @@ const Navbar =()=>{
                     <nav className="flex flex-row justify-between w-[60%] font-semibold items-center">
                         <Link to="/" ><div className="hover:font-bold hover:cursor-pointer hover:text-[#ff0366]" >Accueil</div></Link>
                         <Link to="/filter" ><div className="hover:font-bold hover:cursor-pointer hover:text-[#ff0366]" >Voitures</div></Link>
-                        <Link to="/contact" ><div className="hover:font-bold hover:cursor-pointer hover:text-[#ff0366]" >Contact</div></Link>
-                        <Link to="/aide" ><div className="hover:font-bold hover:cursor-pointer hover:text-[#ff0366]" >Aide</div></Link>
+                        {/* <Link to="/contact" ><div className="hover:font-bold hover:cursor-pointer hover:text-[#ff0366]" >Contact</div></Link> */}
+                        <Link to="/history" ><div className="hover:font-bold hover:cursor-pointer hover:text-[#ff0366]" >Historique</div></Link>
+                        {/* <Link to="/aide" ><div className="hover:font-bold hover:cursor-pointer hover:text-[#ff0366]" >Aide</div></Link> */}
+                        <Link to="/reservations" ><div className="hover:font-bold hover:cursor-pointer hover:text-[#ff0366]" >Reservations</div></Link>
                     </nav>
                         {session?
                             <Link to="/signup" >

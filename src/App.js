@@ -7,6 +7,7 @@ import Contact from './pages/Contact/Contact';
 import FilterCars from './pages/Filter/FilterCars.jsx';
 // import Reservation from './pages/Filter/Reservation.jsx';
 import UserReservations from './pages/User/UserReservations.jsx';
+import Historique from './pages/User/Historique.jsx';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/filter" element={<FilterCars/>}  />
           {/* <Route path="/reservation" element={<Reservation/>}  /> */}
           <Route path="/reservations" element={<UserReservations/>}  />
+          <Route path="/history" element={<Historique/>}  />
         </Routes>
       </Router>
     </div>
