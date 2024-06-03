@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import img from "./contact.jpg";
 import axios from "axios";
+import { IoMdArrowBack } from "react-icons/io";
+
 
 const Contact = () => {
     const [data, setData]=useState({
@@ -8,6 +10,9 @@ const Contact = () => {
         email:"",
         msg:""
     });
+    const goBack = () => {
+        window.history.back();
+    }
     const handleChange=(e)=>{
         setData({...data,[e.target.name]:e.target.value})
     }
@@ -34,7 +39,10 @@ const Contact = () => {
     return (
         <div className="text-white xmin-screen:pt-[7%] pt-[40%]  " style={{ backgroundImage: `url(${img})`, backgroundSize: "cover", minHeight: "100vh", }}>
             <div className="max-w-md w-full mx-0 p-6 sm:ml-[10%]  bg-gray-900 rounded-lg shadow-md">
-                <h2 className="text-3xl text-center font-bold mb-6">Contactez Nous</h2>
+                    <div className="flex items-center mb-4">
+                        <IoMdArrowBack className="cursor-pointer text-white mr-2" onClick={goBack} />
+                        <h2 className="text-3xl font-bold text-white">Contactez Nous</h2>
+                    </div>
                 <form onSubmit={handleForm}>
                     <div className="mb-4">
                         <input name="name" onChange={handleChange} placeholder="Votre nom" className="w-full px-3 focus:border py-2 rounded-lg bg-gray-800 focus:outline-none focus:border-blue-500" required type="text"/>
