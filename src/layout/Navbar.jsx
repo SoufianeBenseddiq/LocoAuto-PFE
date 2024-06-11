@@ -63,7 +63,7 @@ const Navbar = () => {
           ) : (
             <Link to="/signup">
               <button className="text-white bg-black rounded-3xl w-[180px] h-[40px] font-semibold hover:bg-[#ff0366] ease-in-out duration-[450ms]">
-                S'inscrire
+                Se Connecter
               </button>
             </Link>
           )}
@@ -101,7 +101,7 @@ const Navbar = () => {
           ) : (
             <Link to="/signup">
               <button className="text-white bg-black rounded-3xl w-[170px] h-[40px] font-semibold">
-                S'inscrire
+                Se connecter
               </button>
             </Link>
           )}

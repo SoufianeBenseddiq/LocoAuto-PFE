@@ -8,6 +8,7 @@ import FilterCars from './pages/Filter/FilterCars.jsx';
 // import Reservation from './pages/Filter/Reservation.jsx';
 import UserReservations from './pages/User/UserReservations.jsx';
 import Historique from './pages/User/Historique.jsx';
+import HomeAdmin from './Admin/HomeAdmin.jsx';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Home/>} />
+          <Route path='/HomeAdmin' element={<HomeAdmin/>} />
           <Route path='/signup' element={<Signup/>} />
           <Route path='/login' element={<Login/>} />
           <Route path="/contact" element={<Contact/>}  />

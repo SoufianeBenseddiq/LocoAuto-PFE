@@ -9,7 +9,7 @@ import CarDetails from "./CarDetail";
 const FilterCars = () => {
 const [currentPopUp,setCurrentPopUp]=useState("")
 const [msg,setMsg]=useState("")
-const [ids, setIds] = useState(Array.from({ length: 106 }, (_, index) => index + 1));
+const [ids, setIds] = useState([]);
 // const [showComments, setShowComments] = useState(false);
 const [data, setData] = useState({
     categorie: null,
@@ -17,9 +17,17 @@ const [data, setData] = useState({
     nbrValises: null,
     transmission: null,
     marque: null,
-    prix: null
+    prix: null,
 });
-
+// to bring the ids for the first time
+useEffect(()=>{
+    axios.post("http://localhost/locoauto/carsIds.php").then(
+        (response)=>{
+            alert(response.data)
+            setIds(response.data)
+        }
+    )
+},[])
 // stop scrolling when a popup is on
 useEffect(()=>{
     if(currentPopUp.length===0){

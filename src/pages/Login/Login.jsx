@@ -33,7 +33,17 @@ export default function Login() {
                         date.setTime(date.getTime() + (10 * 24 * 60 * 60 * 1000));
                         var expires = "expires=" + date.toUTCString();
                         document.cookie = "token=" + token + ";" + expires + ";path=/";
-                        navigate("/");
+                        axios.get(`http://localhost/locoauto/admin/checkAdmin.php?token=${token}`).then(
+                            (response)=>{
+                                // alert(response.data)
+                                if(response.data==='admin'){
+                                    navigate("/HomeAdmin");
+                                }else{
+                                    navigate("/");
+                                }
+                            }
+                        )
+                        
                     } else {
                         alert("Token not received from server.");
                     }
