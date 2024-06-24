@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 
-const NavbarAdmin = ({operation, setOperation}) => {
+const NavbarAdmin = ({ operation, setOperation }) => {
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -26,15 +26,12 @@ const NavbarAdmin = ({operation, setOperation}) => {
                     LocoAuto
                 </a>
                 <div className="hidden md:flex space-x-6 items-center">
-                    <p className="hover:underline" onClick={setOperation(1)}>
-                        Dashboard
+                    <p className="hover:underline cursor-pointer" onClick={() => setOperation(1)}>
+                        Voitures
                     </p>
-                    <a href="/ManageCars" className="hover:underline">
-                        Manage Cars
-                    </a>
-                    <a href="/Reservations" className="hover:underline">
+                    <p className="hover:underline cursor-pointer" onClick={() => setOperation(2)}>
                         Reservations
-                    </a>
+                    </p>
                     <button 
                         onClick={handleLogOut}
                         className="bg-yellow-500 text-gray-800 font-semibold py-2 px-4 rounded hover:bg-yellow-600 transition duration-300"
@@ -49,7 +46,7 @@ const NavbarAdmin = ({operation, setOperation}) => {
                 </div>
             </div>
             {isOpen && (
-                <div className="md:hidden ">
+                <div className="md:hidden">
                     <a href="/HomeAdmin" className="block py-2 px-4 hover:underline">
                         Dashboard
                     </a>

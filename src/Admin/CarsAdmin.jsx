@@ -1,19 +1,21 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ModifyCar from "./ModifyCar";
+import AddCar from "./AddCar";
 
 const CarsAdmin = () => {
     const [marque, setMarque] = useState(0);
     const [cars, setCars] = useState([]);
     const [editingCar, setEditingCar] = useState(null);
+    const [addCar, setAddCar] = useState(false);
 
     useEffect(() => {
         if (!editingCar) {
             document.body.style.overflowY = "scroll";
-            } else {
+        } else {
             document.body.style.overflowY = "hidden";
-            }
-        }, [editingCar]);
+        }
+    }, [editingCar]);
 
     useEffect(() => {
         fetchData(0);
@@ -43,11 +45,10 @@ const CarsAdmin = () => {
     };
 
     const handleDelete = (id_voiture) => {
-        if(window.confirm("Voulez vous supprimer la voiture ? (Elle sera restauree)")){
+        if (window.confirm("Voulez vous supprimer la voiture ? (Elle sera restauree)")) {
             axios.delete(`http://localhost/locoauto/admin/carDisponibility.php?id_voiture=${id_voiture}`).then(
                 (response) => {
-                    // alert(response.data)
-                    fetchData(marque)
+                    fetchData(marque);
                 }
             ).catch((error) => {
                 alert("There was an error!", error);
@@ -61,7 +62,7 @@ const CarsAdmin = () => {
 
     return (
         <div className="container mx-auto p-4">
-            <form onSubmit={handleSubmit} className="mb-6 p-4 bg-gray-100 mt-4 shadow-lg rounded-lg max-w-xl mx-auto flex items-center justify-between space-x-4">
+            <form onSubmit={handleSubmit} className="mb-4 p-4 bg-gray-100 mt-4 shadow-lg rounded-lg max-w-lg mx-auto flex items-center justify-between space-x-4">
                 <label htmlFor="marque" className="text-gray-700 text-sm font-bold">
                     Marque :
                 </label>
@@ -93,6 +94,14 @@ const CarsAdmin = () => {
                 </button>
             </form>
 
+
+            {!addCar && (<h1 onClick={() => setAddCar(true)} className="mx-auto font-semibold text-green-500 text-xl mb-4 underline cursor-pointer w-fit">
+                Ajouter une voiture
+            </h1>)}
+            {addCar && (
+                <AddCar closeForm={() => setAddCar(false)} />
+            )}
+
             {cars.length > 0 && (
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white border border-gray-300">
@@ -115,8 +124,8 @@ const CarsAdmin = () => {
                         <tbody>
                             {cars.map((car, index) => (
                                 <tr key={index} className="hover:bg-gray-100">
-                                    <td 
-                                        onClick={() => window.open(`http://localhost/locoauto/carsimages/${car.chemin}?t=${new Date().getTime()}`, '_blank')} 
+                                    <td
+                                        onClick={() => window.open(`http://localhost/locoauto/carsimages/${car.chemin}?t=${new Date().getTime()}`, '_blank')}
                                         className="cursor-pointer border-b"
                                     >
                                         <img src={`http://localhost/locoauto/carsimages/${car.chemin}?t=${new Date().getTime()}`} alt={car.libelle_voiture} className="w-24 h-auto" />
@@ -131,7 +140,7 @@ const CarsAdmin = () => {
                                     <td className="py-2 px-4 border-b">{car.transmission}</td>
                                     <td className="py-2 px-4 border-b">{car.type_carburant}</td>
                                     <td className="py-2 px-4 border-b">
-                                        <button 
+                                        <button
                                             className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                                             onClick={() => handleModify(car)}
                                         >
@@ -139,7 +148,7 @@ const CarsAdmin = () => {
                                         </button>
                                     </td>
                                     <td className="py-2 px-4 border-b">
-                                        <button 
+                                        <button
                                             className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
                                             onClick={() => handleDelete(car.id_voiture)}
                                         >
