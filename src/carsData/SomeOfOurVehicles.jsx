@@ -96,7 +96,7 @@ const SomeOfOurVehicles = () => {
                 <img src={carsData[category][6]} alt="" className="p-2 md:h-[120px] h-[190px] md:w-[25%] rounded-3xl md:block hidden" />
             </div>
             <div className="flex items-center w-fit mx-auto hover:cursor-pointer md:mt-0 mt-64" data-aos="slide-right" >
-                <h2 className="font-bold text-[16px]" >Voir toutes les voitures (32)  </h2>
+                <a className="font-bold text-[16px]" href="http://localhost:3000/filter" >Voir toutes les voitures (+100)  </a>
                 <GoArrowRight size={23} className="ml-2" />
             </div>
             

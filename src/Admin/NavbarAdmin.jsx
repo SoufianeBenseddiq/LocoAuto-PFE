@@ -32,6 +32,9 @@ const NavbarAdmin = ({ operation, setOperation }) => {
                     <p className="hover:underline cursor-pointer" onClick={() => setOperation(2)}>
                         Reservations
                     </p>
+                    <p className="hover:underline cursor-pointer" onClick={() => setOperation(3)}>
+                        Chauffeurs
+                    </p>
                     <button 
                         onClick={handleLogOut}
                         className="bg-yellow-500 text-gray-800 font-semibold py-2 px-4 rounded hover:bg-yellow-600 transition duration-300"

@@ -28,7 +28,7 @@ export default function Login() {
                 } else {
                     const token = result.data.token;
                     if (token!=="") {
-                        alert(token)
+                        // alert(token)
                         var date = new Date();
                         date.setTime(date.getTime() + (10 * 24 * 60 * 60 * 1000));
                         var expires = "expires=" + date.toUTCString();
@@ -73,9 +73,9 @@ export default function Login() {
                         <input onChange={handleChange} name='password' className='p-2 rounded-lg bg-gray-700 mt-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none' type="password" />
                     </div>
                     <input type="submit" value="Se connecter" className="hover:cursor-pointer w-full bg-blue-500 text-white py-2 px-4 mt-4 rounded-md hover:bg-[#ff0366] transition duration-300" />
-                    <div className='flex justify-between' >
+                    <div className='flex justify-center' >
                         <p className='cursor-pointer hover:underline mt-2 underline text-gray-400 text-[12px] text-center hover:text-white ' ><Link to={"/signup"} >Creer un compte</Link></p>
-                        <p className='cursor-pointer hover:underline mt-2 underline text-gray-400 text-[12px] text-center hover:text-white ' >Mot de passe oublié ?</p>
+                        {/* <p className='cursor-pointer hover:underline mt-2 underline text-gray-400 text-[12px] text-center hover:text-white ' >Mot de passe oublié ?</p> */}
                     </div>
                 </form>
             </div>

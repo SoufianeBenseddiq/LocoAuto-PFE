@@ -23,7 +23,7 @@ const [data, setData] = useState({
 useEffect(()=>{
     axios.post("http://localhost/locoauto/carsIds.php").then(
         (response)=>{
-            alert(response.data)
+            // alert(response.data)
             setIds(response.data)
         }
     )
@@ -56,7 +56,7 @@ const handleFilter = (e) => {
     axios
     .post("http://localhost/locoauto/filter.php", finalData)
     .then((response) => {
-        alert(response.data.result);
+        // alert(response.data.result);
         if(response.data.status==="success"){
             setIds(response.data.result);
             if(response.data.length===0){

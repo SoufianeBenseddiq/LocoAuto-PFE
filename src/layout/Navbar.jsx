@@ -52,7 +52,7 @@ const Navbar = () => {
             ) : (
               <>
                 <Link to="/contact"><div className="hover:font-bold hover:cursor-pointer hover:text-[#ff0366]">Contact</div></Link>
-                <Link to="/aide"><div className="hover:font-bold hover:cursor-pointer hover:text-[#ff0366]">Aide</div></Link>
+                <Link to="/about"><div className="hover:font-bold hover:cursor-pointer hover:text-[#ff0366]">A propos</div></Link>
               </>
             )}
           </nav>
@@ -61,7 +61,7 @@ const Navbar = () => {
               Se déconnecter
             </button>
           ) : (
-            <Link to="/signup">
+            <Link to="/login">
               <button className="text-white bg-black rounded-3xl w-[180px] h-[40px] font-semibold hover:bg-[#ff0366] ease-in-out duration-[450ms]">
                 Se Connecter
               </button>

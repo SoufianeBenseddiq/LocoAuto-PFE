@@ -1,112 +1,63 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { FaFacebookF } from "react-icons/fa";
-import { AiOutlineTwitter, AiFillYoutube } from "react-icons/ai";
+import React from "react";
 import logo from "./LocoAuto.png";
 
 function Footer() {
-  useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
-
-  const iconsTab = [
-    { icon: <FaFacebookF /> },
-    { icon: <AiOutlineTwitter /> },
-    { icon: <AiFillYoutube /> },
-  ];
-
   return (
-    <>
-      <footer className="bg-gradient-to-b from-black to-gray-900 text-white">
-        <div className="container py-[10rem]  max-w-[1100px] mx-auto ">
-          {/* footer div all */}
-          <div className="flex justify-between flex-col md:flex-row items-center md:items-start md:gap-[5rem] text-left">
-            {/* logo side */}
-            <div
-              data-aos="fade-up"
-              className="flex flex-col w-1/2 md:p-0 py-4 gap-8"
-            >
-              <img
-                src={logo}
-                alt="footer_logo"
-                className="w-[18rem]"
-                data-aos="zoom-in"
-              />
-              <p className="text-[15px] font-medium">
-                Take your health and body to the next level with our
-                comprehensive program designed to help you reach your fitness
-                goals.
-              </p>
-              {/* socials */}
-              <div className="flex gap-7 text-[18px] justify-center md:justify-start">
-                {iconsTab.map(({ icon }, index) => (
-                  <div
-                    key={index}
-                    className="text-2xl bg-[#efefef] p-2 rounded-full hover:bg-[#ff0366] text-black hover:text-white cursor-pointer"
-                    style={{ transition: "all 0.3s" }}
-                    data-aos="fade-up"
-                    data-aos-delay={index * 100}
-                  >
-                    {icon}
-                  </div>
-                ))}
-              </div>
-              <p className="text-[16px] font-medium">
-                Privacy Policy | © {new Date().getFullYear()} LocoAuto <br />
-                <br />
-                <br />
-              </p>
-            </div>
+    <footer className="bg-gray-900 text-white">
+      <div className="container py-10 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center md:gap-8 text-left">
+          {/* Logo et À Propos */}
+          <div className="flex flex-col md:w-1/2 gap-8 md:pb-0 pb-8">
+            <img src={logo} alt="logo du pied de page" className="w-40 md:w-60" />
+            <p className="text-sm md:text-base">
+              Louez votre voiture idéale avec LocoAuto. Découvrez notre gamme de véhicules pour chaque trajet.
+            </p>
+          </div>
 
-            {/* middle div */}
-            <div
-              data-aos="fade-up"
-              data-aos-delay="200"
-              className="flex flex-col gap-8 relative"
-            >
-              <p className="text-[22px] font-bold footer-main">Our Classes</p>
-              <span className="top-[33px] absolute w-[7rem] h-[4px] bg-[#ff0366]"></span>
-              <p className="text-[16px] hover:text-[#ff0366] cursor-pointer font-medium">
-                Fitness Classes
-              </p>
-              <p className="text-[16px] hover:text-[#ff0366] cursor-pointer font-medium">
-                Aerobics Classes
-              </p>
-              <p className="text-[16px] hover:text-[#ff0366] cursor-pointer font-medium">
-                Power Yoga
-              </p>
-              <p className="text-[16px] hover:text-[#ff0366] cursor-pointer font-medium">
-                Learn Machines
-              </p>
-              <p className="text-[16px] hover:text-[#ff0366] cursor-pointer font-medium">
-                Full-body Strength
-              </p>
-            </div>
+          {/* Liens Rapides */}
+          <div className="flex flex-col gap-4 md:pl-10">
+            <p className="text-lg font-bold">Liens Rapides</p>
+            <a href="http://localhost:3000/" className="text-gray-300 hover:text-white">
+              Accueil
+            </a>
+            <a href="http://localhost:3000/about" className="text-gray-300 hover:text-white">
+              À Propos de Nous
+            </a>
+            <a href="http://localhost:3000/filter" className="text-gray-300 hover:text-white">
+              Véhicules
+            </a>
+            <a href="http://localhost:3000/contact" className="text-gray-300 hover:text-white">
+              Contactez-nous
+            </a>
+          </div>
 
-            {/* right div */}
-            <div
-              data-aos="fade-up"
-              data-aos-delay="300"
-              className="flex flex-col gap-8 relative"
-            >
-              <p className="text-[22px] font-bold footer-main">
-                Working Hours
-              </p>
-              <span className="top-[33px] absolute w-[7rem] h-[4px] bg-[#ff0366]"></span>
-              <p className="text-[16px] font-bold">Monday - Friday:</p>
-              <p className="text-[16px] font-medium">7:00am - 21:00pm</p>
-              <p className="text-[16px] font-bold">Saturday:</p>
-              <p className="text-[16px] font-medium">7:00am - 19:00pm</p>
-              <p className="text-[16px] font-bold">Sunday - Closed</p>
-            </div>
-
-            {/* middle div */}
-            <span></span>
+          {/* Informations de Contact */}
+          <div className="flex flex-col gap-4 md:pl-10">
+            <p className="text-lg font-bold">A propos</p>
+            <p className="text-gray-300">zone industriel sidi ghanem N 11/1, Marrakesh 40000</p>
+            <p className="text-gray-300">Marrakech, Maroc</p>
+            <p className="text-gray-300">locoautosarl@gmail.com</p>
+            <p className="text-gray-300">+212 6 84 71 16 37</p>
           </div>
         </div>
-      </footer>
-    </>
+
+        {/* Mentions Légales et Réseaux Sociaux */}
+        <div className="border-t border-gray-700 mt-8 pt-6 flex justify-between items-center text-sm">
+          <div>
+            <p>&copy; {new Date().getFullYear()} LocoAuto. Tous droits réservés.</p>
+          </div>
+          <div className="flex gap-4">
+            {/* <a href="#" className="text-gray-300 hover:text-white">
+              Politique de Confidentialité
+            </a>
+            <a href="#" className="text-gray-300 hover:text-white">
+              Conditions d'Utilisation
+            </a> */}
+            {/* Ajouter des icônes de médias sociaux si nécessaire */}
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }
 

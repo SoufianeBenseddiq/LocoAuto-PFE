@@ -1,5 +1,4 @@
 import React from "react";
-// import AOS from "aos";
 import "aos/dist/aos.css";
 
 const FAQ = () => {
@@ -11,7 +10,7 @@ const FAQ = () => {
             Questions & Réponses
           </h2>
           <p data-aos="fade-right" data-aos-delay="300" className="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-300">
-            Explorez les questions et réponses courantes sur la location de voitures
+            Explorez les questions et réponses courantes sur la location de voitures.
           </p>
         </div>
 
@@ -23,7 +22,7 @@ const FAQ = () => {
             <div className="ml-4">
               <p className="text-xl font-semibold text-white">Comment louer une voiture?</p>
               <p className="mt-4 text-base text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat magna.
+                Pour louer une voiture, choisissez le véhicule qui vous convient et réservez-le. Notre équipe administrative vous contactera par téléphone la veille de la date de début pour confirmer la réservation. Le livreur apportera ensuite la voiture jusqu'à l'emplacement choisi.
               </p>
             </div>
           </div>
@@ -35,7 +34,7 @@ const FAQ = () => {
             <div className="ml-4">
               <p className="text-xl font-semibold text-white">Quels sont les documents nécessaires?</p>
               <p className="mt-4 text-base text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat magna.
+                Les documents nécessaires sont une copie PDF de votre carte d'identité et une copie PDF de votre permis de conduire.
               </p>
             </div>
           </div>
@@ -45,9 +44,9 @@ const FAQ = () => {
               <span className="text-lg font-semibold text-white">?</span>
             </div>
             <div className="ml-4">
-              <p className="text-xl font-semibold text-white">Quelles sont les options de paiement?</p>
+              <p className="text-xl font-semibold text-white">Quelle est la politique de carburant?</p>
               <p className="mt-4 text-base text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat magna.
+                Notre politique de carburant stipule que les véhicules doivent être restitués avec un réservoir de carburant au même niveau que lors de la prise en charge.
               </p>
             </div>
           </div>
@@ -57,9 +56,9 @@ const FAQ = () => {
               <span className="text-lg font-semibold text-white">?</span>
             </div>
             <div className="ml-4">
-              <p className="text-xl font-semibold text-white">Quelle est la politique de carburant?</p>
+              <p className="text-xl font-semibold text-white">Comment se déroule la restitution du véhicule?</p>
               <p className="mt-4 text-base text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vel volutpat magna.
+                La restitution du véhicule se fait à l'endroit convenu lors de la réservation. Assurez-vous de retourner le véhicule avec toutes les clés et documents requis.
               </p>
             </div>
           </div>

@@ -5,10 +5,10 @@ import Signup from './pages/Signup/Signup';
 import Login from './pages/Login/Login';
 import Contact from './pages/Contact/Contact';
 import FilterCars from './pages/Filter/FilterCars.jsx';
-// import Reservation from './pages/Filter/Reservation.jsx';
 import UserReservations from './pages/User/UserReservations.jsx';
 import Historique from './pages/User/Historique.jsx';
 import HomeAdmin from './Admin/HomeAdmin.jsx';
+import AboutUs from './layout/AboutUs.jsx';
 
 function App() {
   return (
@@ -21,6 +21,7 @@ function App() {
           <Route path='/login' element={<Login/>} />
           <Route path="/contact" element={<Contact/>}  />
           <Route path="/filter" element={<FilterCars/>}  />
+          <Route path="/about" element={<AboutUs/>}  />
           {/* <Route path="/reservation" element={<Reservation/>}  /> */}
           <Route path="/reservations" element={<UserReservations/>}  />
           <Route path="/history" element={<Historique/>}  />
